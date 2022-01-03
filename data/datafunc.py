@@ -184,3 +184,34 @@ def add_multi_album_artist_column(df: pd.DataFrame) -> pd.DataFrame:
         lambda count: False if count == 1 else True
     )
     return new_df
+
+
+def get_wide_form_album_df(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Groups the long-form submission dataframe into
+    it's relevent features by album.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The long-form AOTY submission df.
+
+    Returns
+    -------
+    pd.Dataframe
+        The wide-form AOTY df grouped by Artist-Album.
+    """
+    new_df = df.copy()
+
+    relevent_album_columns = [
+        "Artist",
+        "Album",
+        "album_score",
+        "album_submission_count",
+        "unique_album_submission",
+        "artist_album_release_count",
+        "multi_album_artist",
+    ]
+    album_df = new_df[relevent_album_columns].groupby(["Artist", "Album"]).mean()
+    album_df = album_df.astype(int)
+    return album_df

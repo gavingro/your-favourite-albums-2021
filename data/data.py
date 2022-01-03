@@ -10,6 +10,7 @@ from .datafunc import (
     add_artist_album_release_count,
     add_multi_album_artist_column,
     add_album_score,
+    get_wide_form_album_df,
 )
 
 AOTY = pd.read_csv("./data/AOTY-2021-lists.csv")
@@ -21,6 +22,8 @@ AOTY = (
     .pipe(add_artist_album_release_count)
     .pipe(add_multi_album_artist_column)
 )
+
+AOTY_by_album = get_wide_form_album_df(AOTY)
 
 TOTAL_LISTERS = get_total_listers(AOTY)
 TOTAL_ARTISTS = get_total_artists(AOTY)

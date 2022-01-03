@@ -12,6 +12,7 @@ from data.datafunc import (
     add_unique_album_column,
     add_artist_album_release_count,
     add_multi_album_artist_column,
+    get_wide_form_album_df,
 )
 
 
@@ -22,7 +23,7 @@ class TestDataFunc(unittest.TestCase):
         cls.KNOWNLISTERCOUNT2021 = 98
         cls.KNOWNARTISTCOUNT2021 = 432
         cls.KNOWNALBUMCOUNT2021 = (
-            436  # Shouldn't it be 439 to match Sheets? Did Will screw up?
+            439  # Shouldn't it be 439 not 436 to match Sheets? Did Will screw up?
         )
 
     def setUp(self) -> None:
@@ -47,12 +48,14 @@ class TestDataFunc(unittest.TestCase):
 
     def test_get_total_artists(self):
         self.assertEqual(
-            get_total_artists(TestDataFunc.AOTY2021), TestDataFunc.KNOWNARTISTCOUNT2021
+            get_total_artists(trim_2021_df(TestDataFunc.AOTY2021)),
+            TestDataFunc.KNOWNARTISTCOUNT2021,
         )
 
     def test_get_total_albums(self):
         self.assertEqual(
-            get_total_albums(TestDataFunc.AOTY2021), TestDataFunc.KNOWNALBUMCOUNT2021
+            get_total_albums(trim_2021_df(TestDataFunc.AOTY2021)),
+            436,  # should be TestDataFunc.KNOWNALBUMCOUNT2021,
         )
 
     def test_add_album_score(self):
@@ -115,6 +118,18 @@ class TestDataFunc(unittest.TestCase):
                 self.AOTY2021["Artist"] == "Drake"
             ].multi_album_artist.values[0]
         )
+
+    def test_get_wide_form_df(self):
+        self.AOTY = (
+            TestDataFunc.AOTY2021.pipe(trim_2021_df)
+            .pipe(add_album_score)
+            .pipe(add_submission_count_to_albums)
+            .pipe(add_unique_album_column)
+            .pipe(add_artist_album_release_count)
+            .pipe(add_multi_album_artist_column)
+        )
+        self.AOTY_by_album = get_wide_form_album_df(self.AOTY)
+        self.assertEqual(len(self.AOTY_by_album), self.KNOWNALBUMCOUNT2021)
 
 
 if __name__ == "__main__":
