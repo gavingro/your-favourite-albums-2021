@@ -77,6 +77,26 @@ def get_total_albums(df: pd.DataFrame) -> int:
     return new_df["Album"].nunique()
 
 
+def add_album_score(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Adds the total album score column to the dataframe
+    based on the sum of all the Rank scores.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Long form AOTY dataframe with Rank and Album column.
+
+    Returns
+    -------
+    pd.DataFrame
+        AOTY dataframe with added album_score column.
+    """
+    new_df = df.copy()
+    new_df["album_score"] = new_df.groupby(["Album"])["Rank"].transform(sum)
+    return new_df
+
+
 def add_submission_count_to_albums(df: pd.DataFrame) -> pd.DataFrame:
     """
     Adds a count of how many times each album was submitted in the overall

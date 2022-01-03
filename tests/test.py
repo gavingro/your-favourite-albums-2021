@@ -2,10 +2,12 @@ import unittest
 import pandas as pd
 
 from data.datafunc import (
+    add_album_score,
     trim_2021_df,
     get_total_listers,
     get_total_artists,
     get_total_albums,
+    add_album_score,
     add_submission_count_to_albums,
     add_unique_album_column,
     add_artist_album_release_count,
@@ -52,6 +54,15 @@ class TestDataFunc(unittest.TestCase):
         self.assertEqual(
             get_total_albums(TestDataFunc.AOTY2021), TestDataFunc.KNOWNALBUMCOUNT2021
         )
+
+    def test_add_album_score(self):
+        self.AOTY2021 = add_album_score(TestDataFunc.AOTY2021)
+        self.sour_score = self.AOTY2021.loc[
+            self.AOTY2021["Album"] == "Sour"
+        ].album_score.values[0]
+        self.assertEqual(
+            self.sour_score, 138
+        )  # observed 137 from 2021 Google Sheets, but counted 138
 
     def test_add_submission_count_to_albums(self):
         self.AOTY2021 = add_submission_count_to_albums(TestDataFunc.AOTY2021)
