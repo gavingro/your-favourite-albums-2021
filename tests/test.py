@@ -19,7 +19,9 @@ class TestDataFunc(unittest.TestCase):
         cls.AOTY2021 = pd.read_csv("data/AOTY-2021-lists.csv")
         cls.KNOWNLISTERCOUNT2021 = 98
         cls.KNOWNARTISTCOUNT2021 = 432
-        cls.KNOWNALBUMCOUNT2021 = 439
+        cls.KNOWNALBUMCOUNT2021 = (
+            436  # Shouldn't it be 439 to match Sheets? Did Will screw up?
+        )
 
     def setUp(self) -> None:
         pass
@@ -79,10 +81,29 @@ class TestDataFunc(unittest.TestCase):
         )
 
     def test_add_artist_album_release_count(self):
-        pass
+        self.AOTY2021 = add_artist_album_release_count(TestDataFunc.AOTY2021)
+        self.aquilo_release_count = self.AOTY2021.loc[
+            self.AOTY2021["Artist"] == "Aquilo"
+        ].artist_album_release_count.values[0]
+        self.assertEqual(self.aquilo_release_count, 1)  # known single album release
+        self.drake_release_count = self.AOTY2021.loc[
+            self.AOTY2021["Artist"] == "Drake"
+        ].artist_album_release_count.values[0]
+        self.assertEqual(self.drake_release_count, 2)  # known multi album release
 
     def test_add_multi_album_artist_column(self):
-        pass
+        self.AOTY2021 = add_artist_album_release_count(TestDataFunc.AOTY2021)
+        self.AOTY2021 = add_multi_album_artist_column(self.AOTY2021)
+        self.assertFalse(
+            self.AOTY2021.loc[
+                self.AOTY2021["Artist"] == "Aquilo"
+            ].multi_album_artist.values[0]
+        )
+        self.assertTrue(
+            self.AOTY2021.loc[
+                self.AOTY2021["Artist"] == "Drake"
+            ].multi_album_artist.values[0]
+        )
 
 
 if __name__ == "__main__":

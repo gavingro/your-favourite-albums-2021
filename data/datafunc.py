@@ -36,7 +36,7 @@ def get_total_listers(df: pd.DataFrame) -> int:
         Count of unique listers.
     """
     new_df = df.copy()
-    return len(new_df["Lister"].unique())
+    return new_df["Lister"].nunique()
 
 
 def get_total_artists(df: pd.DataFrame) -> int:
@@ -74,7 +74,7 @@ def get_total_albums(df: pd.DataFrame) -> int:
         Count of unique albums.
     """
     new_df = df.copy()
-    return len(new_df["Album"].unique())
+    return new_df["Album"].nunique()
 
 
 def add_submission_count_to_albums(df: pd.DataFrame) -> pd.DataFrame:
