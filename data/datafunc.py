@@ -318,7 +318,9 @@ def get_wide_form_album_df(df: pd.DataFrame) -> pd.DataFrame:
     return album_df
 
 
-def get_albums_of_note(df: pd.DataFrame) -> pd.DataFrame:
+def get_albums_of_note(
+    df: pd.DataFrame, extra_albums: list[str] = None
+) -> pd.DataFrame:
     """
     Returns a smaller subset of the dataframe with only
     the albums of note to annotate in figures.
@@ -331,17 +333,24 @@ def get_albums_of_note(df: pd.DataFrame) -> pd.DataFrame:
     ----------
     df : pd.DataFrame
         AOTY by album dataframe (wide-form).
+    extra_albums : list[str]
+        Extra user_defined albums of note to add
+        (used mainly with user album lookups)
 
     Returns
     -------
     pd.DataFrame
         Smaller dataframe of only the relevent albums.
     """
+    if not extra_albums:
+        extra_albums = []
     albums_of_note = df.copy().loc[
         # Get Top Album
         (df["album_score"] == df["album_score"].max())
         # Get Corner Cases on Top 10 List.
         | ((df["top_10_score_album"] == True) & (df["top_10_count_album"] == False))
         | ((df["top_10_score_album"] == False) & (df["top_10_count_album"] == True))
+        # get extra_albums
+        | (df["Album"].isin(extra_albums))
     ]
     return albums_of_note

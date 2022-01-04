@@ -29,6 +29,7 @@ class TestDataFunc(unittest.TestCase):
         cls.KNOWNALBUMCOUNT2021 = (
             439  # Shouldn't it be 439 not 436 to match Sheets? Did Will screw up?
         )
+        cls.ALBUMSOFNOTE2021 = 3  # update as our function updates
 
     def setUp(self) -> None:
         pass
@@ -200,10 +201,16 @@ class TestDataFunc(unittest.TestCase):
             .pipe(add_multi_album_artist_column)
             .pipe(get_wide_form_album_df)
         )
-        self.albums_of_note = get_albums_of_note(self.AOTY_by_album)
+        self.albums_of_note = get_albums_of_note(
+            self.AOTY_by_album, ["Build A Problem"]
+        )
+        self.assertEqual(
+            len(self.albums_of_note), TestDataFunc.ALBUMSOFNOTE2021 + 1
+        )  # 1 manually added
         self.assertIn("An Evening With Silk Sonic", self.albums_of_note.Album.values)
         self.assertIn("Planet Her", self.albums_of_note.Album.values)
         self.assertIn("Day/Night", self.albums_of_note.Album.values)
+        self.assertIn("Build A Problem", self.albums_of_note.Album.values)
 
 
 if __name__ == "__main__":
