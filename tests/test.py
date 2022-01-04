@@ -8,6 +8,8 @@ from data.datafunc import (
     get_total_artists,
     get_total_albums,
     add_album_score,
+    add_top_10_albums_by_score,
+    add_top_10_albums_by_count,
     add_album_average_rank,
     add_album_submission_count,
     add_unique_album_column,
@@ -77,6 +79,35 @@ class TestDataFunc(unittest.TestCase):
         ].album_score.values[0]
         self.assertEqual(self.sour_score, 137)  # observed 137 from 2021 Google Sheets
 
+    def test_add_top_10_albums_by_score(self):
+        self.AOTY2021 = add_album_submission_count(TestDataFunc.AOTY2021)
+        self.AOTY2021 = add_album_score(self.AOTY2021)
+        self.AOTY2021 = add_top_10_albums_by_score(self.AOTY2021)
+        self.assertTrue(
+            self.AOTY2021.loc[
+                self.AOTY2021["Album"] == "Day/Night"  # corner case from data
+            ].top_10_score_album.values[0]
+        )
+        self.assertFalse(
+            self.AOTY2021.loc[
+                self.AOTY2021["Album"] == "Planet Her"  # corner case from data
+            ].top_10_score_album.values[0]
+        )
+
+    def test_add_top_10_albums_by_count(self):
+        self.AOTY2021 = add_album_submission_count(TestDataFunc.AOTY2021)
+        self.AOTY2021 = add_top_10_albums_by_count(self.AOTY2021)
+        self.assertFalse(
+            self.AOTY2021.loc[
+                self.AOTY2021["Album"] == "Day/Night"  # corner case from data
+            ].top_10_count_album.values[0]
+        )
+        self.assertTrue(
+            self.AOTY2021.loc[
+                self.AOTY2021["Album"] == "Planet Her"  # corner case from data
+            ].top_10_count_album.values[0]
+        )
+
     def test_add_album_average_rank(self):
         self.AOTY2021 = add_album_average_rank(TestDataFunc.AOTY2021)
         self.wilderado_score = self.AOTY2021.loc[
@@ -145,6 +176,8 @@ class TestDataFunc(unittest.TestCase):
             TestDataFunc.AOTY2021.pipe(trim_2021_df)
             .pipe(add_album_submission_count)
             .pipe(add_album_score)
+            .pipe(add_top_10_albums_by_count)
+            .pipe(add_top_10_albums_by_score)
             .pipe(add_album_average_rank)
             .pipe(add_unique_album_column)
             .pipe(add_artist_album_release_count)

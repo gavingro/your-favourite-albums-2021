@@ -7,6 +7,8 @@ from .datafunc import (
     get_total_albums,
     add_album_submission_count,
     add_album_score,
+    add_top_10_albums_by_score,
+    add_top_10_albums_by_count,
     add_album_average_rank,
     add_unique_album_column,
     add_artist_album_release_count,
@@ -18,7 +20,9 @@ AOTY = pd.read_csv("./data/AOTY-2021-lists.csv")
 AOTY = (
     AOTY.pipe(trim_2021_df)
     .pipe(add_album_submission_count)
+    .pipe(add_top_10_albums_by_count)
     .pipe(add_album_score)
+    .pipe(add_top_10_albums_by_score)
     .pipe(add_album_average_rank)
     .pipe(add_unique_album_column)
     .pipe(add_artist_album_release_count)

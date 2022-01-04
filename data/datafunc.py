@@ -99,6 +99,38 @@ def add_album_score(df: pd.DataFrame) -> pd.DataFrame:
     return new_df
 
 
+def add_top_10_albums_by_score(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Adds a boolean column based on if the album is one of the top 10 albums
+    of the year by it's album score.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The long form AOTY dataframe (not grouped by album) with
+        album_score column.
+
+    Returns
+    -------
+    pd.DataFrame
+        The long form AOTY df with an added
+        top_10_score_album column.
+    """
+    new_df = df.copy()
+    top_10_albums = (
+        new_df[["Album", "album_score"]]
+        .groupby("Album")
+        .mean()
+        .sort_values("album_score", ascending=False)
+        .head(10)
+    )
+    top_10_album_names = top_10_albums.index.values
+    new_df["top_10_score_album"] = new_df["Album"].apply(
+        lambda album: True if album in top_10_album_names else False
+    )
+    return new_df
+
+
 def add_album_average_rank(df: pd.DataFrame) -> pd.DataFrame:
     """
     Adds the album average score column to the dataframe
@@ -137,6 +169,38 @@ def add_album_submission_count(df: pd.DataFrame) -> pd.DataFrame:
     new_df = df.copy()
     new_df["album_submission_count"] = new_df.groupby(["Album"])["Album"].transform(
         "size"
+    )
+    return new_df
+
+
+def add_top_10_albums_by_count(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Adds a boolean column based on if the album is one of the top 10 albums
+    of the year by it's album submission count.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The long form AOTY dataframe (not grouped by album) with
+        album_submission_count column.
+
+    Returns
+    -------
+    pd.DataFrame
+        The long form AOTY df with an added
+        top_10_count_album column.
+    """
+    new_df = df.copy()
+    top_10_albums = (
+        new_df[["Album", "album_submission_count"]]
+        .groupby("Album")
+        .mean()
+        .sort_values("album_submission_count", ascending=False)
+        .head(10)
+    )
+    top_10_album_names = top_10_albums.index.values
+    new_df["top_10_count_album"] = new_df["Album"].apply(
+        lambda album: True if album in top_10_album_names else False
     )
     return new_df
 
@@ -231,18 +295,24 @@ def get_wide_form_album_df(df: pd.DataFrame) -> pd.DataFrame:
         "album_score",
         "album_average_rank",
         "album_submission_count",
+        "top_10_score_album",
+        "top_10_count_album",
         "unique_album_submission",
         "artist_album_release_count",
         "multi_album_artist",
     ]
+    # Each is already added accurately to the long form data with .transform(),
+    # so the mean() will maintain the same value going forward.
     album_df = new_df[relevent_album_columns].groupby(["Artist", "Album"]).mean()
 
-    col_types = {
-        col_name: "int" for col_name in relevent_album_columns[2:]
-    }  # avoid index cols
+    # avoid index cols and set int as the default.
+    col_types = {col_name: "int" for col_name in relevent_album_columns[2:]}
+    # Adjust specific datatypes
     col_types["album_average_rank"] = "float"
     col_types["unique_album_submission"] = "bool"
     col_types["multi_album_artist"] = "bool"
+    col_types["top_10_score_album"] = "bool"
+    col_types["top_10_count_album"] = "bool"
 
     album_df = album_df.astype(col_types).reset_index()
     return album_df
