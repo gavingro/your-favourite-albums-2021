@@ -241,6 +241,8 @@ def get_wide_form_album_df(df: pd.DataFrame) -> pd.DataFrame:
         col_name: "int" for col_name in relevent_album_columns[2:]
     }  # avoid index cols
     col_types["album_average_rank"] = "float"
+    col_types["unique_album_submission"] = "bool"
+    col_types["multi_album_artist"] = "bool"
 
     album_df = album_df.astype(col_types).reset_index()
     return album_df
