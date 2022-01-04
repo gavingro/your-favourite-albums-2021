@@ -85,7 +85,7 @@ def add_album_score(df: pd.DataFrame) -> pd.DataFrame:
     Parameters
     ----------
     df : pd.DataFrame
-        Long form AOTY dataframe with Rank and Album column.
+        Long form AOTY dataframe with Rank and Album, and album_submission_count column.
 
     Returns
     -------
@@ -93,11 +93,13 @@ def add_album_score(df: pd.DataFrame) -> pd.DataFrame:
         AOTY dataframe with added album_score column.
     """
     new_df = df.copy()
-    new_df["album_score"] = new_df.groupby(["Album"])["Rank"].transform(sum)
+    new_df["album_score"] = (11 * new_df["album_submission_count"]) - (
+        new_df.groupby(["Album"])["Rank"].transform(sum)
+    )
     return new_df
 
 
-def add_submission_count_to_albums(df: pd.DataFrame) -> pd.DataFrame:
+def add_album_submission_count(df: pd.DataFrame) -> pd.DataFrame:
     """
     Adds a count of how many times each album was submitted in the overall
     data frame.
