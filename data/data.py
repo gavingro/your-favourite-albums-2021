@@ -16,8 +16,8 @@ from .datafunc import (
 AOTY = pd.read_csv("./data/AOTY-2021-lists.csv")
 AOTY = (
     AOTY.pipe(trim_2021_df)
-    .pipe(add_album_score)
     .pipe(add_album_submission_count)
+    .pipe(add_album_score)
     .pipe(add_unique_album_column)
     .pipe(add_artist_album_release_count)
     .pipe(add_multi_album_artist_column)
