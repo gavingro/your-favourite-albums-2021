@@ -316,3 +316,32 @@ def get_wide_form_album_df(df: pd.DataFrame) -> pd.DataFrame:
 
     album_df = album_df.astype(col_types).reset_index()
     return album_df
+
+
+def get_albums_of_note(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Returns a smaller subset of the dataframe with only
+    the albums of note to annotate in figures.
+
+    Currently finds:
+        - the top album of the year
+        - albums that are top scorers or counters but not both
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        AOTY by album dataframe (wide-form).
+
+    Returns
+    -------
+    pd.DataFrame
+        Smaller dataframe of only the relevent albums.
+    """
+    albums_of_note = df.copy().loc[
+        # Get Top Album
+        (df["album_score"] == df["album_score"].max())
+        # Get Corner Cases on Top 10 List.
+        | ((df["top_10_score_album"] == True) & (df["top_10_count_album"] == False))
+        | ((df["top_10_score_album"] == False) & (df["top_10_count_album"] == True))
+    ]
+    return albums_of_note

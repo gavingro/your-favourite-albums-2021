@@ -16,6 +16,7 @@ from data.datafunc import (
     add_artist_album_release_count,
     add_multi_album_artist_column,
     get_wide_form_album_df,
+    get_albums_of_note,
 )
 
 
@@ -185,6 +186,24 @@ class TestDataFunc(unittest.TestCase):
         )
         self.AOTY_by_album = get_wide_form_album_df(self.AOTY)
         self.assertEqual(len(self.AOTY_by_album), self.KNOWNALBUMCOUNT2021)
+
+    def test_get_albums_of_note(self):
+        self.AOTY_by_album = (
+            TestDataFunc.AOTY2021.pipe(trim_2021_df)
+            .pipe(add_album_submission_count)
+            .pipe(add_album_score)
+            .pipe(add_top_10_albums_by_count)
+            .pipe(add_top_10_albums_by_score)
+            .pipe(add_album_average_rank)
+            .pipe(add_unique_album_column)
+            .pipe(add_artist_album_release_count)
+            .pipe(add_multi_album_artist_column)
+            .pipe(get_wide_form_album_df)
+        )
+        self.albums_of_note = get_albums_of_note(self.AOTY_by_album)
+        self.assertIn("An Evening With Silk Sonic", self.albums_of_note.Album.values)
+        self.assertIn("Planet Her", self.albums_of_note.Album.values)
+        self.assertIn("Day/Night", self.albums_of_note.Album.values)
 
 
 if __name__ == "__main__":
