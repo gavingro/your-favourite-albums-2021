@@ -99,6 +99,26 @@ def add_album_score(df: pd.DataFrame) -> pd.DataFrame:
     return new_df
 
 
+def add_album_average_rank(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Adds the album average score column to the dataframe
+    based on the average of all the Rank scores for that album.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Long form AOTY dataframe with Rank and Album columns.
+
+    Returns
+    -------
+    pd.DataFrame
+        AOTY dataframe with added album_average_rank column.
+    """
+    new_df = df.copy()
+    new_df["album_average_rank"] = new_df.groupby(["Album"])["Rank"].transform("mean")
+    return new_df
+
+
 def add_album_submission_count(df: pd.DataFrame) -> pd.DataFrame:
     """
     Adds a count of how many times each album was submitted in the overall
@@ -209,11 +229,18 @@ def get_wide_form_album_df(df: pd.DataFrame) -> pd.DataFrame:
         "Artist",
         "Album",
         "album_score",
+        "album_average_rank",
         "album_submission_count",
         "unique_album_submission",
         "artist_album_release_count",
         "multi_album_artist",
     ]
     album_df = new_df[relevent_album_columns].groupby(["Artist", "Album"]).mean()
-    album_df = album_df.astype(int)
+
+    col_types = {
+        col_name: "int" for col_name in relevent_album_columns[2:]
+    }  # avoid index cols
+    col_types["album_average_rank"] = "float"
+
+    album_df = album_df.astype(col_types).reset_index()
     return album_df

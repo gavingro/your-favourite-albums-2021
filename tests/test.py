@@ -8,6 +8,7 @@ from data.datafunc import (
     get_total_artists,
     get_total_albums,
     add_album_score,
+    add_album_average_rank,
     add_album_submission_count,
     add_unique_album_column,
     add_artist_album_release_count,
@@ -76,6 +77,17 @@ class TestDataFunc(unittest.TestCase):
         ].album_score.values[0]
         self.assertEqual(self.sour_score, 137)  # observed 137 from 2021 Google Sheets
 
+    def test_add_album_average_rank(self):
+        self.AOTY2021 = add_album_average_rank(TestDataFunc.AOTY2021)
+        self.wilderado_score = self.AOTY2021.loc[
+            self.AOTY2021["Album"] == "Wilderado"
+        ].album_average_rank.values[0]
+        self.assertEqual(self.wilderado_score, 1)  # 1 scorer gave rank 1
+        self.country_score = self.AOTY2021.loc[
+            self.AOTY2021["Album"] == "Country Again"
+        ].album_average_rank.values[0]
+        self.assertEqual(self.country_score, 5)  # 2 scorer average rank 5
+
     def test_add_album_submission_count(self):
         self.AOTY2021 = add_album_submission_count(TestDataFunc.AOTY2021)
         self.happier_than_ever_count = self.AOTY2021.loc[
@@ -133,6 +145,7 @@ class TestDataFunc(unittest.TestCase):
             TestDataFunc.AOTY2021.pipe(trim_2021_df)
             .pipe(add_album_submission_count)
             .pipe(add_album_score)
+            .pipe(add_album_average_rank)
             .pipe(add_unique_album_column)
             .pipe(add_artist_album_release_count)
             .pipe(add_multi_album_artist_column)

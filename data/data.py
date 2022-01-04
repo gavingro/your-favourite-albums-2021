@@ -7,6 +7,7 @@ from .datafunc import (
     get_total_albums,
     add_album_submission_count,
     add_album_score,
+    add_album_average_rank,
     add_unique_album_column,
     add_artist_album_release_count,
     add_multi_album_artist_column,
@@ -18,6 +19,7 @@ AOTY = (
     AOTY.pipe(trim_2021_df)
     .pipe(add_album_submission_count)
     .pipe(add_album_score)
+    .pipe(add_album_average_rank)
     .pipe(add_unique_album_column)
     .pipe(add_artist_album_release_count)
     .pipe(add_multi_album_artist_column)
