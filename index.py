@@ -2,7 +2,7 @@ import os
 
 import dash
 
-from app import app
+from app import app, server
 from layout.layout import layout1
 from layout.callbacks import *
 
