@@ -7,7 +7,10 @@ import dash_bootstrap_components as dbc
 from app import app
 from .components.banner import BANNER
 from .components.sidebar import SIDEBAR
-from .components.viz.top_10_album_score import TOP_10_ALBUM_SCORE_FIG
+from .page_home import HOME_PAGE
+from .page_top_10 import TOP_10_PAGE
+from .page_discover import DISCOVER_PAGE
+from .page_compare import COMPARE_PAGE
 
 
 # APP LAYOUT
@@ -21,7 +24,7 @@ layout = html.Div(
                 dbc.Row(
                     children=[
                         SIDEBAR,
-                        dbc.Col(
+                        html.Div(
                             className="col-md-9",
                             id="page-content",
                         ),
@@ -32,34 +35,18 @@ layout = html.Div(
     ],
 )
 
-# PAGES
-
-home_page = "HOME"
-top_10_page = [
-    dcc.Graph(figure=TOP_10_ALBUM_SCORE_FIG),
-    dcc.Graph(figure=TOP_10_ALBUM_SCORE_FIG),
-]
-discover_page = "DISCOVER"
-compare_page = "COMPARE"
-
 # PAGE INDEX
-
-
 @app.callback(Output("page-content", "children"), Input("url", "pathname"))
 def display_page(pathname):
     if pathname == "/":
-        return home_page
+        return HOME_PAGE
     elif pathname == "/home":
-        return home_page
+        return HOME_PAGE
     elif pathname == "/top_10":
-        return top_10_page
+        return TOP_10_PAGE
     elif pathname == "/discover":
-        return discover_page
+        return DISCOVER_PAGE
     elif pathname == "/compare":
-        return compare_page
+        return COMPARE_PAGE
     else:
         return "404"
-
-
-if __name__ == "__main__":
-    app.run_server(debug=True)
