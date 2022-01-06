@@ -1,12 +1,13 @@
 import os
 
 import dash
-
-external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
+import dash_bootstrap_components as dbc
 
 app = dash.Dash(
     __name__,
-    external_stylesheets=external_stylesheets,
     suppress_callback_exceptions=True,
+    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    title="Our Favourite Albums 2021",
+    meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
 )
 server = app.server

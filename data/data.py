@@ -31,9 +31,11 @@ AOTY = (
 
 AOTY_by_album = get_wide_form_album_df(AOTY)
 
+# Useful Scalars
 TOTAL_LISTERS = get_total_listers(AOTY)
 TOTAL_ARTISTS = get_total_artists(AOTY)
 TOTAL_ALBUMS = get_total_albums(AOTY)
+
 
 if __name__ == "__main__":
     print(AOTY)
