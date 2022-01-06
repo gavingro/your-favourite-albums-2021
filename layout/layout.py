@@ -10,13 +10,12 @@ from .components.viz.top_10_album_score import TOP_10_ALBUM_SCORE_FIG
 
 layout1 = html.Div(
     [
-        BANNER,
         dbc.Container(
             fluid=True,
             children=[
                 dbc.Row(
                     children=[
-                        dbc.Col(class_name="col-md-3", children=SIDEBAR),
+                        SIDEBAR,
                         dbc.Col(
                             class_name="col-md-9",
                             children=[

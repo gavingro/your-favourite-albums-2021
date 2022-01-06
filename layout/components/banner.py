@@ -12,7 +12,7 @@ BANNER = dbc.Navbar(
                         html.A(
                             className="navbar-brand",
                             href="#",
-                            children="Our Favourite Albums",
+                            children="Your Favourite Albums",
                         ),
                         dbc.Button(
                             class_name="navbar-toggler",
