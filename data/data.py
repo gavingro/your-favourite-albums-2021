@@ -36,6 +36,10 @@ TOTAL_LISTERS = get_total_listers(AOTY)
 TOTAL_ARTISTS = get_total_artists(AOTY)
 TOTAL_ALBUMS = get_total_albums(AOTY)
 
+TOP_COL_LOOKUP = {
+    "album_score": "top_10_score_album",
+    "album_submission_count": "top_10_count_album",
+}
 
 if __name__ == "__main__":
     print(AOTY)
