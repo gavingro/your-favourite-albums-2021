@@ -3,8 +3,11 @@ import numpy as np
 
 from app import app
 from data.data import AOTY_by_album, TOP_COL_LOOKUP
+
+# Viz Callback Updates
 from .components.viz.top_10_album_score import create_top_10_album_score_fig
 from .components.viz.top_10_album_count import create_top_10_album_count_fig
+from .components.viz.discover import create_discover_fig
 
 
 @app.callback(
