@@ -5,7 +5,6 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
 from app import app
-from .components.banner import BANNER
 from .components.sidebar import SIDEBAR
 from .page_home import HOME_PAGE
 from .page_top_10 import TOP_10_PAGE

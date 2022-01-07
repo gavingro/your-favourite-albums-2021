@@ -1,6 +1,8 @@
 import dash_bootstrap_components as dbc
 from dash import html
 
+from .user_album_input import USER_ALBUM_INPUT
+
 SIDEBAR = dbc.Col(
     class_name="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark",
     style={"height": "100vh"},
@@ -12,7 +14,7 @@ SIDEBAR = dbc.Col(
                 html.Img(className="bi me-2", height=44, src="assets/cd_icon.png"),
                 html.Span(
                     className="fs-4 fw-bold lh-1",
-                    children="Your Favourite \nAlbums 2021",
+                    children=["Your Favourite", html.Br(), "Albums 2021"],
                 ),
             ],
         ),
@@ -102,19 +104,13 @@ SIDEBAR = dbc.Col(
         dbc.Label("Rank By:"),
         dbc.RadioItems(
             options=[
-                {"label": "Album Score", "value": 1},
-                {"label": "Album Submissions", "value": 2},
+                {"label": "Album Score", "value": "album_score"},
+                {"label": "Album Submissions", "value": "album_submission_count"},
             ],
-            value=1,
-            id="rank-by",
+            value="album_score",
+            id="rank-by-radio",
         ),
         dbc.Label("Album Search:", class_name="mt-3"),
-        dbc.Input(
-            className="mb-3 p-2",
-            placeholder="Enter Album Name...",
-            size="sm",
-            valid=True,
-            debounce=True,
-        ),
+        USER_ALBUM_INPUT,
     ],
 )
