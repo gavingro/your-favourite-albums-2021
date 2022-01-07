@@ -23,7 +23,7 @@ def create_top_10_album_count_fig(user_album_select, top_col):
         | (AOTY_by_album_ranked["Album"] == user_album_select)
     ]
 
-    top_10_albums["user_album"] = top_10_albums["Album"].apply(
+    top_10_albums.loc[:, "user_album"] = top_10_albums.loc[:, "Album"].apply(
         lambda album: True if album == user_album_select else False
     )
 
@@ -37,7 +37,7 @@ def create_top_10_album_count_fig(user_album_select, top_col):
             y=["album_submission_count"],
             barmode="stack",
             color="user_album",
-            text="Album",
+            text="Artist",
             hover_name="Album",
             custom_data=["Artist"],
             labels={"value": "Album Submissions"},

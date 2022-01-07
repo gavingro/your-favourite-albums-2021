@@ -1,10 +1,13 @@
 import os
 
-import dash
+import pandas as pd
 
 from app import app, server
 from layout.layout import layout
 from layout.callbacks import *
+
+# # Just to supress the .loc message
+pd.options.mode.chained_assignment = None
 
 app.layout = layout
 

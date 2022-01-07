@@ -23,7 +23,7 @@ def create_top_10_album_score_fig(user_album_select, top_col):
         | (AOTY_by_album_ranked["Album"] == user_album_select)
     ]
 
-    top_10_albums["user_album"] = top_10_albums["Album"].apply(
+    top_10_albums.loc[:, "user_album"] = top_10_albums.loc[:, "Album"].apply(
         lambda album: True if album == user_album_select else False
     )
 
