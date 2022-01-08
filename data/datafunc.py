@@ -354,3 +354,45 @@ def get_albums_of_note(
         | (df["Album"].isin(extra_albums))
     ]
     return albums_of_note
+
+
+def get_competing_albums(df: pd.DataFrame, USER_ALBUM: str) -> pd.DataFrame:
+    """
+    Returns a smaller subset of the nearby ranked albums
+    based on the rank of the user album passed in, with
+    an additional column to note which album is selected.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The AOTY by album df in a meaningful order.
+    USER_ALBUM : str
+        Title of album to lookup
+
+    Returns
+    -------
+    pd.DataFrame
+        A dataframe of 5 rows surrounding (or at edge) of
+        user selected album.
+    """
+    new_df = df.copy()
+
+    # Get 5 albums, ideally 2 on either side (adjusting for endpoints).
+    user_album_rank = new_df.loc[new_df["Album"] == USER_ALBUM].index[0]
+    if user_album_rank == 0:
+        rank_range = range(user_album_rank, user_album_rank + 5)
+    elif user_album_rank == 1:
+        rank_range = range(user_album_rank - 1, user_album_rank + 4)
+    elif user_album_rank == len(new_df) - 2:
+        rank_range = range(user_album_rank - 3, user_album_rank + 2)
+    elif user_album_rank == len(new_df) - 1:
+        rank_range = range(user_album_rank - 4, user_album_rank + 1)
+    else:
+        rank_range = range(user_album_rank - 2, user_album_rank + 3)
+
+    new_df = new_df.iloc[rank_range, :]
+
+    new_df["user_album"] = new_df["Album"].apply(
+        lambda album: True if album == USER_ALBUM else False
+    )
+    return new_df

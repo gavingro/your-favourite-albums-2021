@@ -23,7 +23,7 @@ def create_top_10_album_count_fig(user_album_select, top_col):
         | (AOTY_by_album_ranked["Album"] == user_album_select)
     ]
 
-    top_10_albums["user_album"] = top_10_albums["Album"].apply(
+    top_10_albums.loc[:, "user_album"] = top_10_albums.loc[:, "Album"].apply(
         lambda album: True if album == user_album_select else False
     )
 
@@ -37,7 +37,7 @@ def create_top_10_album_count_fig(user_album_select, top_col):
             y=["album_submission_count"],
             barmode="stack",
             color="user_album",
-            text="Album",
+            text="Artist",
             hover_name="Album",
             custom_data=["Artist"],
             labels={"value": "Album Submissions"},
@@ -82,7 +82,7 @@ def create_top_10_album_count_fig(user_album_select, top_col):
         y1=AOTY_by_album_ranked["album_submission_count"].quantile(0.75),
         opacity=0.3,
         fillcolor=APP_COLORS["dark"],
-        annotation_text=f"'Usual' Album Submission Count: {AOTY_by_album_ranked['album_submission_count'].quantile(0.25):.2f} - {AOTY_by_album_ranked['album_score'].quantile(0.75):.2f}",
+        annotation_text=f"'Usual' Album Submission Count: {AOTY_by_album_ranked['album_submission_count'].quantile(0.25):.2f} - {AOTY_by_album_ranked['album_submission_count'].quantile(0.75):.2f}",
         annotation_position="inside right",
         annotation_font_color=APP_COLORS["light"],
     )

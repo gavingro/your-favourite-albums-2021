@@ -4,7 +4,7 @@ from dash import html
 from .user_album_input import USER_ALBUM_INPUT
 
 SIDEBAR = dbc.Col(
-    class_name="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark",
+    class_name="d-flex flex-column flex-shrink-1 p-4 text-white bg-dark sticky-md-top rounded-right",
     style={"height": "100vh"},
     children=[
         html.A(
