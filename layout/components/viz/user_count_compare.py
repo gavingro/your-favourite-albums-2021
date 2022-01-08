@@ -43,7 +43,7 @@ def create_user_count_compare_fig(user_album_select, top_col):
         )
     ]
 
-    compare_df["album_average_rank"] = 0 - compare_df["album_average_rank"]
+    compare_df["album_average_rank"] = compare_df["album_average_rank"] - 10
 
     # figure
     USER_COUNT_COMPARE_FIG = px.bar(
