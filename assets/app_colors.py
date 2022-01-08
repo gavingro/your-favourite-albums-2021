@@ -1,6 +1,6 @@
 APP_COLORS = {
-    "accent": "crimson",
-    "standard": "navy",
+    "standard": "rgb(33,36,40)",
+    "accent": "rgb(56,91,216)",
     "dim": "lightgrey",
     "dark": "dark grey",
     "light": "antiquewhite",
