@@ -4,7 +4,7 @@ import pandas as pd
 
 from app import app, server
 from layout.layout import layout
-from layout.callbacks import *
+from layout.loose_callbacks import *
 
 # # Just to supress the .loc message
 pd.options.mode.chained_assignment = None

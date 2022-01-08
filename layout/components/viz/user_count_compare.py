@@ -59,6 +59,7 @@ def create_user_count_compare_fig(user_album_select, top_col):
         template="simple_white",
         text="rank",
         color_discrete_map={True: APP_COLORS["accent"], False: APP_COLORS["standard"]},
+        height=350,
     )
 
     USER_COUNT_COMPARE_FIG.update_traces(

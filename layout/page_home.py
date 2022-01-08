@@ -1,6 +1,7 @@
 from dash import html
 import dash_bootstrap_components as dbc
 
+
 SPOTIFY_LINK = "https://open.spotify.com/playlist/1JaWG6CdqroFJmq7OcJ1J8?si=8699cc89fd764447&fbclid=IwAR2Iz-6vfRUPVOHDFbtkt2WxUzF0ewzyTdcXBZ5NPGsIYlgxvM7N6t86zt4&nd=1"
 APPLE_LINK = "https://music.apple.com/ca/playlist/your-top-albums-2k21/pl.u-leylWDLfjxB95jV?fbclid=IwAR1bd-vEUGjB_A731LJRZO-n2c-LJp8m_Y-zZDacBQ6tAYp722NbX9A98M8"
 
@@ -15,7 +16,7 @@ HOME_PAGE = html.Div(
                 html.P(
                     className="lead mb-4",
                     children=[
-                        "A 'best-of-the-best' assembled lovingly with care, by people who care. Playlists for 2021 avaliable on Spotify and Apple Music."
+                        "A 'best-of-the-best' assembled by people who care. Playlists for 2021 avaliable on Spotify and Apple Music."
                     ],
                 ),
                 html.Div(

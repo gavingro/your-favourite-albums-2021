@@ -4,6 +4,10 @@ import numpy as np
 from app import app
 from data.data import AOTY_by_album, TOP_COL_LOOKUP
 
+# Component Callbacks
+from .components.compare_text import get_compare_text
+from .components.discover_table import update_discover_table
+
 # Viz Callback Updates
 from .components.viz.top_10_album_score import create_top_10_album_score_fig
 from .components.viz.top_10_album_count import create_top_10_album_count_fig
@@ -12,14 +16,6 @@ from .components.viz.user_stripplot import create_user_stripplot_fig
 from .components.viz.user_rank import create_user_rank_fig
 from .components.viz.user_score_compare import create_user_score_compare_fig
 from .components.viz.user_count_compare import create_user_count_compare_fig
-
-
-@app.callback(
-    Output("display-value", "children"),
-    [Input("dropdown", "value")],
-)
-def display_value(value):
-    return 'You have selected "{}"'.format(value)
 
 
 # Create ranked_album_df by Radio Select

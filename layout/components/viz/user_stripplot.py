@@ -39,10 +39,12 @@ def create_user_stripplot_fig(user_album_select, top_col):
         data_frame=user_album_votes,
         x="Album",
         y="Rank",
+        color="Artist",
         custom_data=["Artist"],
         labels={"Rank": "Rankings on Voters Top 10 Lists", "Artist": ""},
         template="simple_white",
-        color_discrete_sequence=[APP_COLORS["standard"]],
+        color_discrete_sequence=[APP_COLORS["standard"], APP_COLORS["accent"]],
+        height=350,
     )
 
     USER_STRIPPLOT.update_traces(

@@ -44,7 +44,7 @@ def create_user_score_compare_fig(user_album_select, top_col):
     ]
 
     # figure
-    figure = px.bar(
+    USER_SCORE_COMPARE_FIG = px.bar(
         data_frame=compare_df,
         x="Album",
         y=top_col,
@@ -58,9 +58,10 @@ def create_user_score_compare_fig(user_album_select, top_col):
         template="simple_white",
         text="rank",
         color_discrete_map={True: APP_COLORS["accent"], False: APP_COLORS["standard"]},
+        height=350,
     )
 
-    figure.update_traces(
+    USER_SCORE_COMPARE_FIG.update_traces(
         hovertemplate="<br>".join(
             [
                 "<b>%{customdata[0]}</b> - <i>%{x}</i>",
@@ -72,7 +73,7 @@ def create_user_score_compare_fig(user_album_select, top_col):
 
     # overall average
     overall_average = AOTY_by_album[top_col].mean().round(2)
-    figure.add_hrect(
+    USER_SCORE_COMPARE_FIG.add_hrect(
         y0=overall_average - 1,
         y1=overall_average + 1,
         opacity=0.3,
@@ -85,7 +86,7 @@ def create_user_score_compare_fig(user_album_select, top_col):
 
     # top 10 average
     top_10_average = top_10_albums[top_col].mean().round(2)
-    figure.add_hrect(
+    USER_SCORE_COMPARE_FIG.add_hrect(
         y0=top_10_average - 1,
         y1=top_10_average + 1,
         opacity=0.3,
@@ -97,7 +98,7 @@ def create_user_score_compare_fig(user_album_select, top_col):
     )
 
     # Add invisible points for hover
-    figure.add_scatter(
+    USER_SCORE_COMPARE_FIG.add_scatter(
         x=[user_album_select, user_album_select],
         y=[overall_average, top_10_average],
         showlegend=False,
@@ -105,5 +106,7 @@ def create_user_score_compare_fig(user_album_select, top_col):
         mode="none",
     )
 
-    figure.update_layout(hovermode="y", showlegend=False, xaxis_categoryorder="trace")
-    return figure
+    USER_SCORE_COMPARE_FIG.update_layout(
+        hovermode="y", showlegend=False, xaxis_categoryorder="trace"
+    )
+    return USER_SCORE_COMPARE_FIG
