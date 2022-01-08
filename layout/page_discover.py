@@ -1,3 +1,3 @@
 from dash import dcc
 
-DISCOVER_PAGE = ["Discover", dcc.Graph(id="discover-fig")]
+DISCOVER_PAGE = [dcc.Graph(id="discover-fig")]

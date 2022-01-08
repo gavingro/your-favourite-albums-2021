@@ -8,6 +8,10 @@ from data.data import AOTY_by_album, TOP_COL_LOOKUP
 from .components.viz.top_10_album_score import create_top_10_album_score_fig
 from .components.viz.top_10_album_count import create_top_10_album_count_fig
 from .components.viz.discover import create_discover_fig
+from .components.viz.user_stripplot import create_user_stripplot_fig
+from .components.viz.user_rank import create_user_rank_fig
+from .components.viz.user_score_compare import create_user_score_compare_fig
+from .components.viz.user_count_compare import create_user_count_compare_fig
 
 
 @app.callback(
