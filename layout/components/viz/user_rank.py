@@ -52,6 +52,7 @@ def create_user_rank_fig(user_album_select, top_col):
         template="simple_white",
         text="rank",
         color_discrete_map={True: APP_COLORS["accent"], False: APP_COLORS["standard"]},
+        height=350,
     )
 
     USER_RANK_FIG.update_traces(
@@ -67,11 +68,13 @@ def create_user_rank_fig(user_album_select, top_col):
         )
     )
 
-    USER_RANK_FIG.update_layout(
-        hovermode="closest", showlegend=False, xaxis_categoryorder="total descending"
-    )
+    USER_RANK_FIG.update_layout(hovermode="closest", showlegend=False)
     USER_RANK_FIG.update_yaxes(
         side="right",
+    )
+    USER_RANK_FIG.update_xaxes(
+        categoryorder="array",
+        categoryarray=[album for album in nearby_df["Album"].values],
     )
 
     return USER_RANK_FIG

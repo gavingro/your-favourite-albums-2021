@@ -30,9 +30,9 @@ SIDEBAR = dbc.Col(
                             children=[
                                 html.Img(
                                     className="bi me-2",
-                                    height=16,
-                                    width=16,
-                                    src="assets/cd_icon.png",
+                                    height=22,
+                                    width=22,
+                                    src="assets/home-icon.png",
                                 ),
                                 html.Span(
                                     className="fs-6 fw-light p-3", children="Home"
@@ -49,9 +49,9 @@ SIDEBAR = dbc.Col(
                             children=[
                                 html.Img(
                                     className="bi me-2",
-                                    height=16,
-                                    width=16,
-                                    src="assets/cd_icon.png",
+                                    height=22,
+                                    width=22,
+                                    src="assets/podium-icon.png",
                                 ),
                                 html.Span(
                                     className="fs-6 fw-light p-3", children="Top 10"
@@ -68,9 +68,9 @@ SIDEBAR = dbc.Col(
                             children=[
                                 html.Img(
                                     className="bi me-2",
-                                    height=16,
-                                    width=16,
-                                    src="assets/cd_icon.png",
+                                    height=22,
+                                    width=22,
+                                    src="assets/discover-icon.png",
                                 ),
                                 html.Span(
                                     className="fs-6 fw-light p-3", children="Discover"
@@ -87,9 +87,9 @@ SIDEBAR = dbc.Col(
                             children=[
                                 html.Img(
                                     className="bi me-2",
-                                    height=16,
-                                    width=16,
-                                    src="assets/cd_icon.png",
+                                    height=22,
+                                    width=22,
+                                    src="assets/compare-icon.png",
                                 ),
                                 html.Span(
                                     className="fs-6 fw-light p-3", children="Compare"

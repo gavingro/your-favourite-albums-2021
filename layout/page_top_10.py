@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 
 
 TOP_10_PAGE = [
-    dcc.Graph(id="top-10-album-score-fig"),
+    dcc.Graph(id="top-10-album-score-fig", config={"displayModeBar": False}),
     html.H6(className="display-6 fw-bold text-center", children="Top 10 Albums"),
-    dcc.Graph(id="top-10-album-count-fig"),
+    dcc.Graph(id="top-10-album-count-fig", config={"displayModeBar": False}),
 ]
