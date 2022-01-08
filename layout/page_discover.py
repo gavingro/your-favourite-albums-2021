@@ -8,7 +8,7 @@ from data.data import TOTAL_LISTERS, TOTAL_ARTISTS, TOTAL_ALBUMS, AOTY_by_album
 
 
 DISCOVER_PAGE = [
-    dcc.Graph(id="discover-fig"),
+    dcc.Graph(id="discover-fig", config={"displayModeBar": False}),
     dbc.Row(
         class_name="px-3 pt-4 my-4 text-center",
         children=[
