@@ -6,6 +6,7 @@ from data.data import AOTY_by_album, TOP_COL_LOOKUP
 
 # Component Callbacks
 from .components.compare_text import get_compare_text
+from .components.discover_text import get_discover_text
 from .components.discover_table import update_discover_table
 
 # Viz Callback Updates
