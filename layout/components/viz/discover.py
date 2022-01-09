@@ -48,7 +48,7 @@ def create_discover_fig(user_album_select, top_col):
         },
         custom_data=["Artist", "Album", "album_score"],
         opacity=0.4,
-        color_discrete_sequence=[APP_COLORS["accent"], APP_COLORS["standard"]],
+        color_discrete_sequence=[APP_COLORS["standard"], APP_COLORS["accent"]],
     )
     DISCOVER_FIG.update_traces(
         hovertemplate="<br>".join(
@@ -123,6 +123,7 @@ def create_discover_fig(user_album_select, top_col):
         hovermode="closest",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
+        dragmode="select",
     )
 
     return DISCOVER_FIG

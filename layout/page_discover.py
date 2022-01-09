@@ -4,19 +4,20 @@ from dash import dash_table
 import dash_bootstrap_components as dbc
 import pandas as pd
 
-from data.data import TOTAL_LISTERS, TOTAL_ARTISTS, TOTAL_ALBUMS, AOTY_by_album
+from data.data import TOTAL_LISTERS, TOTAL_ARTISTS, TOTAL_ALBUMS
+from assets.app_colors import APP_COLORS
 
 
 DISCOVER_PAGE = [
-    dcc.Graph(id="discover-fig", config={"displayModeBar": False}),
     dbc.Row(
-        class_name="px-3 pt-4 my-4 text-center",
+        class_name="pb-1 pt-5 mt-5 text-center",
         children=[
             html.Div(
-                className="d-grid gap-2 d-sm-flex justify-content-sm-center",
+                className="d-grid gap-5 d-sm-flex justify-content-sm-center",
                 children=[
                     dbc.Card(
-                        dbc.CardBody(
+                        className="shadow",
+                        children=dbc.CardBody(
                             children=[
                                 html.H5(
                                     className="card-title", children="Total Voters:"
@@ -26,10 +27,11 @@ DISCOVER_PAGE = [
                                     children=TOTAL_LISTERS,
                                 ),
                             ]
-                        )
+                        ),
                     ),
                     dbc.Card(
-                        dbc.CardBody(
+                        className="shadow",
+                        children=dbc.CardBody(
                             children=[
                                 html.H5(
                                     className="card-title", children="Total Albums:"
@@ -39,10 +41,11 @@ DISCOVER_PAGE = [
                                     children=TOTAL_ALBUMS,
                                 ),
                             ]
-                        )
+                        ),
                     ),
                     dbc.Card(
-                        dbc.CardBody(
+                        className="shadow",
+                        children=dbc.CardBody(
                             children=[
                                 html.H5(
                                     className="card-title",
@@ -53,14 +56,31 @@ DISCOVER_PAGE = [
                                     children=TOTAL_ARTISTS,
                                 ),
                             ]
-                        )
+                        ),
                     ),
                 ],
             ),
         ],
     ),
+    dcc.Graph(
+        id="discover-fig",
+        config={
+            "displayModeBar": False,
+        },
+    ),
+    dbc.Row(
+        class_name="text-center mx-auto, pb-4",
+        id="discover-text",
+    ),
     # TODO: Add Working Datatable
-    # dash_table.DataTable(
-    #     id="discover-table",
-    # ),
+    dbc.Row(
+        class_name=None,
+        children=dash_table.DataTable(
+            id="discover-table",
+            style_header={
+                "backgroundColor": APP_COLORS["standard"],
+                "color": "white",
+            },
+        ),
+    ),
 ]

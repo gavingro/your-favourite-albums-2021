@@ -9,9 +9,9 @@ from data.data import AOTY_by_album
 # Get Album Metadata and populate title based on it
 @app.callback(
     Output("compare-text", "children"),
-    [Input("user-album-select", "name"), Input("rank-by-radio", "value")],
+    [Input("user-album-select", "name")],
 )
-def get_compare_text(user_album_select, top_col):
+def get_compare_text(user_album_select):
     if not user_album_select:
         title_text = "Search for an known album in the sidebar to compare to the overall and top album submissions."
 
