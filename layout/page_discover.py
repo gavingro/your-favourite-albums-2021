@@ -74,13 +74,14 @@ DISCOVER_PAGE = [
     ),
     # TODO: Add Working Datatable
     dbc.Row(
-        class_name=None,
+        class_name="pb-4",
         children=dash_table.DataTable(
             id="discover-table",
             style_header={
                 "backgroundColor": APP_COLORS["standard"],
                 "color": "white",
             },
+            page_size=20,
         ),
     ),
 ]
