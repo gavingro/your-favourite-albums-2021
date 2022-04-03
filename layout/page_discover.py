@@ -9,58 +9,26 @@ from assets.app_colors import APP_COLORS
 
 
 DISCOVER_PAGE = [
-    dbc.Row(
-        class_name="pb-1 pt-5 mt-5 text-center",
-        children=[
-            html.Div(
-                className="d-grid gap-5 d-sm-flex justify-content-sm-center",
+    html.Div(
+        className = "px-4 pt-2 my-5",
+        children = [
+            html.P(
+                className="lead mb-3 mt-3 text-center",
                 children=[
-                    dbc.Card(
-                        className="shadow",
-                        children=dbc.CardBody(
-                            children=[
-                                html.H5(
-                                    className="card-title", children="Total Voters:"
-                                ),
-                                html.H6(
-                                    className="card-subtitle mb-2 text-muted",
-                                    children=TOTAL_LISTERS,
-                                ),
-                            ]
-                        ),
-                    ),
-                    dbc.Card(
-                        className="shadow",
-                        children=dbc.CardBody(
-                            children=[
-                                html.H5(
-                                    className="card-title", children="Total Albums:"
-                                ),
-                                html.H6(
-                                    className="card-subtitle mb-2 text-muted",
-                                    children=TOTAL_ALBUMS,
-                                ),
-                            ]
-                        ),
-                    ),
-                    dbc.Card(
-                        className="shadow",
-                        children=dbc.CardBody(
-                            children=[
-                                html.H5(
-                                    className="card-title",
-                                    children="Total Artists:",
-                                ),
-                                html.H6(
-                                    className="card-subtitle mb-2 text-muted",
-                                    children=TOTAL_ARTISTS,
-                                ),
-                            ]
-                        ),
-                    ),
-                ],
+                    "If we assume that an album's total submission count is representative of it's overall approachability, and that an album's position on each top 10 list is representative of it's overall quality, then we can create 4 ",
+                    html.Span("imaginary", id="imaginary-categories", style = {"textDecoration": "underline", "cursor": "pointer"}),
+                    " categories for our albums:",
+                    dbc.Tooltip(
+                        children = [
+                            "These assumptions don't hold up under scrutiny.",
+                            html.Br(),
+                            "More than that, the boundaries on the graph below are arbitrarily drawn in halfway through the axes, not halfway through the data. Still, it's a fun perspective."
+                        ],
+                        target="imaginary-categories"
+                    )
+                ]
             ),
-        ],
+        ]
     ),
     dcc.Graph(
         id="discover-fig",
@@ -72,7 +40,6 @@ DISCOVER_PAGE = [
         class_name="text-center mx-auto, pb-4",
         id="discover-text",
     ),
-    # TODO: Add Working Datatable
     dbc.Row(
         class_name="pb-4",
         children=dash_table.DataTable(

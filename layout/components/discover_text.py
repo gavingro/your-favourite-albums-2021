@@ -14,12 +14,14 @@ from data.data import AOTY_by_album
 def get_discover_text(user_album_select):
     if not user_album_select:
         title_text = "Drag graph to filter albums."
-        children = html.P(
+        
+
+    else:
+        title_text = "Enter album name in 'Album Search' to display it on the graph."
+
+    children = html.P(
             className="lead mb-3 mt-3",
             children=[title_text],
         )
-
-    else:
-        children = None
-
+    
     return children
