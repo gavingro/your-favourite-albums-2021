@@ -8,7 +8,7 @@ APPLE_LINK = "https://music.apple.com/ca/playlist/your-top-albums-2k21/pl.u-leyl
 HOME_PAGE = html.Div(
     className="px-4 pt-5 my-5 text-center border-bottom",
     children=[
-        html.H1(className="display-4 pt-1 fw-bold", children="Your Favourite Albums"),
+        html.H1(className="display-4 fw-bold", children="Your Favourite Albums"),
         dbc.Col(
             className="mx-auto",
             lg=6,
