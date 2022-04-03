@@ -119,7 +119,7 @@ SIDEBAR = dbc.Col(
                 "When gathering this data, each participant ranked 10 of their favourite 2021 albums in order.",
                 html.Hr(),
                 html.Span("Weighted Album Score ", className="font-italic"),
-                "awards points to each album based on how high ranking that album was on each top 10 list: #1 album is awarded 10 points while a #10 album is only awarded 1 point.",
+                "awards points to each album based on how high ranking that album was on each top 10 list: a #1 album is awarded 10 points while a #10 album is only awarded 1 point.",
                 html.Br(),
                 html.Br(),
                 html.Span("Total Album Submissions ", className="font-italic"),
