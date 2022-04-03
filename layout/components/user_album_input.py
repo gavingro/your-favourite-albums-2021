@@ -11,7 +11,7 @@ known_albums = html.Datalist(
 
 USER_ALBUM_INPUT = dbc.Input(
     className="mb-3 p-2",
-    placeholder="Enter Album Name...",
+    placeholder="Enter Valid Album Name...",
     size="sm",
     autoComplete="on",
     persistence=True,
