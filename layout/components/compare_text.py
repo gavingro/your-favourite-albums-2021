@@ -13,7 +13,16 @@ from data.data import AOTY_by_album
 )
 def get_compare_text(user_album_select):
     if not user_album_select:
-        title_text = "Search for an known album in the sidebar to compare to the overall and top album submissions."
+        children = html.P(
+            className="lead mb-3 mt-3",
+            children=[
+                "Search for an known album with 'Album Search' in the sidebar to compare it to other albums.",
+                html.Br(),
+                "Without a specific album to focus on, this page is disorganized.",
+                html.Br(),
+                "Try 'Hotel TV' or find your own favourite album in the dataset using the Discover tab."
+                ],
+        )
 
     else:
         artist = (
@@ -23,8 +32,9 @@ def get_compare_text(user_album_select):
         )
         title_text = " - ".join([artist, user_album_select])
 
-    children = html.P(
-        className="lead mb-3 mt-3",
-        children=[title_text],
-    )
+        children = html.H5(
+            className="display-6 fw-bold",
+            children=[title_text],
+        )
+        
     return children
