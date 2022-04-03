@@ -65,15 +65,19 @@ def update_discover_table(user_album_select, top_col, selected_data):
         {"if": {"column_type": "numeric"}, "textAlign": "left"},
     ]
 
-    if user_album_select:
-        conditional_style.append(
-            {
-                "if": {
-                    "filter_query": f"{{Album}} = {user_album_select}"
-                },  # needs "{string}" for plotly
-                "backgroundColor": APP_COLORS["accent"],
-                "color": "white",
-            }
-        )
+    # # This bugged out when I returned to it 4 months later.
+    # # Something weird is happening with the underlying javascript.
+    # # Causes problems when you select an album to search while
+    # # filtering the data table.
+    # if user_album_select:
+    #     conditional_style.append(
+    #         {
+    #             "if": {
+    #                 "filter_query": f"{{Album}} = {user_album_select}"
+    #             },  # needs "{string}" for plotly
+    #             "backgroundColor": APP_COLORS["accent"],
+    #             "color": "white",
+    #         }
+    #     )
 
     return columns, data, conditional_style
