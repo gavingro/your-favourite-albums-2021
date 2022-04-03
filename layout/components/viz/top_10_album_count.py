@@ -14,8 +14,10 @@ def create_top_10_album_count_fig(user_album_select, top_col):
     # re-rank list
     AOTY_by_album_ranked = (
         AOTY_by_album.sort_values(top_col, ascending=False)
+        .reset_index(drop = True)
         .reset_index()
-        .drop(columns="index")
+        .rename(columns = {"index" : "rank"})
+        .assign(rank = lambda df: df["rank"] + 1)
     )
 
     top_10_albums = AOTY_by_album_ranked.loc[
@@ -39,7 +41,7 @@ def create_top_10_album_count_fig(user_album_select, top_col):
             color="user_album",
             text="Artist",
             hover_name="Album",
-            custom_data=["Artist"],
+            custom_data=["Artist", "rank"],
             labels={"value": "Album Submissions"},
             template="simple_white",
             height=375,
@@ -53,7 +55,7 @@ def create_top_10_album_count_fig(user_album_select, top_col):
             barmode="stack",
             text="Artist",
             hover_name="Album",
-            custom_data=["Artist"],
+            custom_data=["Artist", "rank"],
             labels={"value": "Album Submissions", "Album": ""},
             template="simple_white",
             height=375,
@@ -63,7 +65,8 @@ def create_top_10_album_count_fig(user_album_select, top_col):
     TOP_10_ALBUM_COUNT_FIG.update_traces(
         hovertemplate="<br>".join(
             [
-                "<b>%{customdata}</b> - <i>%{x}</i>",
+                "<b>Rank %{customdata[1]}</b>",
+                "%{customdata[0]} - <i>%{x}</i>",
                 "",
                 "<extra></extra>",
             ]
