@@ -1,11 +1,11 @@
-# Your Favourite Albums (2021)
-After Will Friesen made his annual survey of friends for their top 10 albums of the year, he published the results in a [spreadsheet](https://docs.google.com/spreadsheets/d/1E6YwZ5SdZPHBeOZQTKj22AWFnbCqjbhlv9Tplt73RQk/edit?fbclid=IwAR0lxp9NPKsdTe2mpNoLWL7eB7rmdtvafhdMIxx4He24wEobpU52PS_3kAM#gid=0). To help better investigate the their favourite albums (instead of the just the top results), this dashboard helps viewers visually and interactively compare rankings for the albums in the survey.
+# [Your Favourite Albums (2021)](http://www.yourfavouritealbums2021.ca/)
+After Will Friesen made his annual survey of friends for their top 10 albums of the year, he published the results in a spreadsheet. To help better investigate the their favourite albums (instead of the just the top results), this dashboard helps viewers visually and interactively compare rankings for the albums in the survey. Users can find more meaning the album ranks, discover new albums themselves, and enjoy the relevent playlists Friesen has put together.
 
-Application built with Plotly Dash and deployed on [Heroku](https://your-favourite-albums.herokuapp.com).
+Application built with Plotly Dash and deployed through Heroku at http://www.yourfavouritealbums2021.ca/ 
 
 ## The Data
 
-A casual survey in December 2021 between Facebook friends let each participant name and rank their top 10 music albums that were released in 2021. This information was used to create a master list of "favourite albums" based on a combination of individual top-10 rankings, and total submission counts of each album. The survey was strictly opt-in, and participants names were recorded along with their choices.
+A casual survey in December 2021 between Facebook friends let each participant name and rank their top 10 music albums that were released in 2021. This information was used to create a [master list](https://docs.google.com/spreadsheets/d/1E6YwZ5SdZPHBeOZQTKj22AWFnbCqjbhlv9Tplt73RQk/edit?fbclid=IwAR0lxp9NPKsdTe2mpNoLWL7eB7rmdtvafhdMIxx4He24wEobpU52PS_3kAM#gid=0) of "favourite albums" based on a combination of individual top-10 rankings, and total submission counts of each album. The survey was strictly opt-in, and participants names were recorded along with their choices.
 ## The Dashboard
 
 <img src ="assets/dashboard.gif" width="500px">
