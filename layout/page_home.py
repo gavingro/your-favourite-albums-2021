@@ -1,9 +1,11 @@
 from dash import html
 import dash_bootstrap_components as dbc
 
+from data.data import AOTY
 
 SPOTIFY_LINK = "https://open.spotify.com/playlist/1JaWG6CdqroFJmq7OcJ1J8?si=8699cc89fd764447&fbclid=IwAR2Iz-6vfRUPVOHDFbtkt2WxUzF0ewzyTdcXBZ5NPGsIYlgxvM7N6t86zt4&nd=1"
 APPLE_LINK = "https://music.apple.com/ca/playlist/your-top-albums-2k21/pl.u-leylWDLfjxB95jV?fbclid=IwAR1bd-vEUGjB_A731LJRZO-n2c-LJp8m_Y-zZDacBQ6tAYp722NbX9A98M8"
+NUM_VOTERS = len(AOTY["Lister"].unique())
 
 HOME_PAGE = html.Div(
     className="px-4 pt-5 my-5 text-center border-bottom",
@@ -16,7 +18,7 @@ HOME_PAGE = html.Div(
                 html.P(
                     className="lead mb-4",
                     children=[
-                        "A 'best-of-the-best' collection of albums assembled by people who care based on the results of a \"Top 10 Albums\" survey between friends.",
+                        f"A 'best-of-the-best' collection of albums assembled by people who care based on the results of a 'Top 10 Albums' survey between {NUM_VOTERS} friends.",
                         html.Br(),
                         html.Br(),
                         "Use the sidebar to explore the winners, discover new albums, and compare your own favourites.",
