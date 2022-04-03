@@ -68,3 +68,16 @@ def validate_user_album_selection(user_album_try, old_user_album, n_submits):
     else:
         user_album_selection = old_user_album
     return user_album_selection, user_album_validity, not user_album_validity
+
+
+@app.callback(
+    Output("top-10-ranked-by", "children"),
+    Input("rank-by-radio", "value"),
+)
+def update_top_10_ranking(rank_by):
+    ranked_by = None
+    if rank_by == "album_score":
+        ranked_by = "Weighted Album Score"
+    elif rank_by == "album_submission_count":
+        ranked_by = "Total Album Submissions"
+    return ranked_by
