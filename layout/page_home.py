@@ -8,7 +8,7 @@ APPLE_LINK = "https://music.apple.com/ca/playlist/your-top-albums-2k21/pl.u-leyl
 HOME_PAGE = html.Div(
     className="px-4 pt-5 my-5 text-center border-bottom",
     children=[
-        html.H1(className="display-4 fw-bold", children="Your Favourite Albums"),
+        html.H1(className="display-4 pt-1 fw-bold", children="Your Favourite Albums"),
         dbc.Col(
             className="mx-auto",
             lg=6,
@@ -16,7 +16,13 @@ HOME_PAGE = html.Div(
                 html.P(
                     className="lead mb-4",
                     children=[
-                        "A 'best-of-the-best' assembled by people who care. Playlists for 2021 avaliable on Spotify and Apple Music."
+                        "A 'best-of-the-best' collection of albums assembled by people who care based on the results of a \"Top 10 Albums\" survey between friends.",
+                        html.Br(),
+                        html.Br(),
+                        "Use the sidebar to explore the winners, discover new albums, and compare your own favourites.",
+                        html.Br(),
+                        html.Br(),
+                        "Playlists to explore the music made available through:"
                     ],
                 ),
                 html.Div(
