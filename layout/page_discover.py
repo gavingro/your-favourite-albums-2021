@@ -22,7 +22,16 @@ DISCOVER_PAGE = [
                         children = [
                             "These assumptions don't hold up under scrutiny.",
                             html.Br(),
-                            "More than that, the boundaries on the graph below are arbitrarily drawn in halfway through the axes, not halfway through the data. Still, it's a fun perspective."
+                            "Moreover, the boundaries on the graph below are arbitrarily drawn in halfway through the axes, not halfway through the data. Still, the 4 groups give us a fun perspective:",
+                            html.Br(),
+                            html.Br(),
+                            "Hidden Gems (Low Approachability, High Quality)",
+                            html.Br(),
+                            "Barely Made It (Low Approachability, Low Quality)",
+                            html.Br(),
+                            "Easy Listening (High Approachability, Low Quality)",
+                            html.Br(),
+                            "Certified Bangers (High Approachability, High Quality)"
                         ],
                         target="imaginary-categories"
                     )
