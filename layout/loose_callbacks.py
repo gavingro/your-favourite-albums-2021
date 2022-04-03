@@ -75,9 +75,8 @@ def validate_user_album_selection(user_album_try, old_user_album, n_submits):
     Input("rank-by-radio", "value"),
 )
 def update_top_10_ranking(rank_by):
-    ranked_by = None
-    if rank_by == "album_score":
-        ranked_by = "Weighted Album Score"
-    elif rank_by == "album_submission_count":
+    if rank_by == "album_submission_count":
         ranked_by = "Total Album Submissions"
+    else:
+        ranked_by = "Weighted Album Score"
     return ranked_by
