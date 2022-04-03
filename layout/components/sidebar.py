@@ -26,7 +26,7 @@ SIDEBAR = dbc.Col(
                     children=[
                         dbc.NavLink(
                             active="exact",
-                            href="/home",
+                            href="/",
                             children=[
                                 html.Img(
                                     className="bi me-2",

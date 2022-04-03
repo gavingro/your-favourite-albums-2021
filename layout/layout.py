@@ -39,8 +39,6 @@ layout = html.Div(
 def display_page(pathname):
     if pathname == "/":
         return HOME_PAGE
-    elif pathname == "/home":
-        return HOME_PAGE
     elif pathname == "/top_10":
         return TOP_10_PAGE
     elif pathname == "/discover":
