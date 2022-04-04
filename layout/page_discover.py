@@ -17,7 +17,10 @@ DISCOVER_PAGE = [
                 children=[
                     "If we assume that an album's total submission count is representative of it's overall approachability, and that an album's position on each top 10 list is representative of it's overall quality, then we can create 4 ",
                     html.Span("imaginary", id="imaginary-categories", style = {"textDecoration": "underline", "cursor": "pointer"}),
-                    " categories for our albums:",
+                    " categories for our albums.",
+                    html.Br(),
+                    html.Br(),
+                    "This can be an interesting lens to discover new albums:",
                     dbc.Tooltip(
                         children = [
                             "These assumptions don't hold up under scrutiny.",
